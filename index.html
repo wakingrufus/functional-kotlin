@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <style>
+        .grid-area {
+            display: grid;
+            grid-auto-flow: column;
+        }
+
+        .reveal pre code {
+            max-height: none;
+        }
+
+        .reveal pre {
+            width: 100%;
+        }
+
+        .inline-image img {
+            margin: 0;
+        }
+
+        .inline-image {
+            display: inline-flex;
+        }
+    </style>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section data-timing="20">
+            <h1>Functional Kotlin</h1>
+<!--            <img alt="necronomicon but with the gradle logo" src="gradlenomicon.jpg" height="466" width="386">-->
+            <aside class="notes">
+
+            </aside>
+        </section>
+        <section data-timing="60">
+            <h1>About Me</h1>
+            <aside class="notes">
+                You can also find me on the Chicago Tech and Kotlin slacks and the CJUG discord
+            </aside>
+            <h3>John Burns</h3>
+            <div class="grid-area">
+                <div style="text-align: left">
+                    <p>Staff Engineer @ GrubHub</p>
+                    <p>CKUG Co-Organizer</p>
+                    <p class="inline-image"><img alt="twitter logo" src="Twitter-Logo.png" height="48" width="48"/>
+                        <span style="padding-left: .5em">@wakingrufus</span></p>
+                    <p class="inline-image"><img alt="fediverse logo" src="fediverse.png" height="48" width="48"/>
+                        <span style="padding-left: .5em">@wakingrufus@bigshoulders.city</span>
+                    </p>
+                    <p></p>
+                    <p class="inline-image"><img alt="github logo" src="github-logo.png" height="48" width="48"/>
+                        <span style="padding-left: .5em">wakingrufus</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section data-timing="60">
+            <img alt="GrubHub logo" src="gh-logo.png" height="194" width="688">
+            <aside class="notes">
+                HQ is chicago
+                we have been publicly traded and operating off our own revenue and profits since 2014
+                What I do: Service Platform Engineering: JVM Stewardship
+            </aside>
+            <ul>
+                <li>Fully Remote and Hybrid Remote Roles</li>
+                <li>Unlimited PTO</li>
+                <li>8-16 weeks of parental leave</li>
+                <li>4.5 day work week</li>
+            </ul>
+        </section>
+        <section data-timing="90">
+            <h1>About You</h1>
+            <h4 class="fragment">Experienced with OOP Java</h4>
+            <h4 class="fragment">Experienced with Functional Programming</h4>
+            <h4 class="fragment">Experienced with Kotlin</h4>
+            <aside class="notes">
+
+            </aside>
+        </section>
+        <section>
+            <section data-auto-animate data-timing="90">
+                <h2>What is Functional Programming?</h2>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Similar Principles as OOP</h2>
+                <aside class="notes">
+
+                </aside>
+                <ul>
+                    <li>Encapsulation</li>
+                    <li>DRY</li>
+                </ul>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Differences from OOP</h2>
+                <ul>
+                    <li>Verbs vs Nouns</li>
+                    <li>Limit mutable state</li>
+                </ul>
+            </section>
+
+        </section>
+        <section>
+            <section data-auto-animate data-timing="30">
+                <h2>What Makes Code "Functional"?</h2>
+                <ul>
+                    <li>Immutable Data</li>
+                    <li>Pure Functions</li>
+                    <li>"First-class" Functions</li>
+                    <li>Higher Order Functions</li>
+                </ul>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Immutable Data</h2>
+                <ul>
+                    <li>Thread safe</li>
+                    <li>Avoids temporal coupling</li>
+                    <li>No need for defensive copies</li>
+                    <li>Helps prevent side effects</li>
+                    <li>Easier to cache</li>
+                </ul>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Immutable Data</h2>
+                <pre class="kotlin"><code data-trim data-noescape>
+data class ImmutableDataValue(val stringData: String)
+                </code></pre>
+            </section>
+        </section>
+
+        <section data-timing="10">
+            <div class="grid-area">
+                <div style="text-align: left">
+                    <div>https://wakingrufus.github.io/kotlin-2022/</div>
+                    <p class="inline-image"><img alt="twitter logo" src="Twitter-Logo.png" height="48" width="48"/>
+                        <span style="padding-left: .5em">@wakingrufus</span></p>
+                    <p class="inline-image"><img alt="fediverse logo" src="fediverse.png" height="48" width="48"/>
+                        <span style="padding-left: .5em">@wakingrufus@mastodon.technology</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
+        defaultTiming: 60,
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+
+
+</script>
+</body>
+</html>
