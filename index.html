@@ -118,13 +118,19 @@
                 <h2>What Makes Code "Functional"?</h2>
                 <ul>
                     <li>Immutable Data</li>
-                    <li>Pure Functions</li>
                     <li>"First-class" Functions</li>
+                    <li>Pure Functions</li>
                     <li>Higher Order Functions</li>
                 </ul>
             </section>
+
+        </section>
+        <section>
             <section data-auto-animate data-timing="30">
                 <h2>Immutable Data</h2>
+                <aside class="notes">
+                    Value of Values by Rich Hickey
+                </aside>
                 <ul>
                     <li>Thread safe</li>
                     <li>Avoids temporal coupling</li>
@@ -135,12 +141,122 @@
             </section>
             <section data-auto-animate data-timing="30">
                 <h2>Immutable Data</h2>
+                <aside class="notes">
+                    keep state and behavior seperate
+                    classes for data, functions for behavior
+                </aside>
                 <pre class="kotlin"><code data-trim data-noescape>
 data class ImmutableDataValue(val stringData: String)
                 </code></pre>
             </section>
         </section>
+        <section>
+            <section data-auto-animate data-timing="30">
+                <h2>First-Class Functions</h2>
+                <aside class="notes">
 
+                </aside>
+                <ul>
+                    <li>Classes are nouns</li>
+                    <li>Methods are verbs</li>
+                    <li>Functions are verbs and gerunds</li>
+                    <li>Kotlin has first class functions</li>
+                    <li>Static methods and functional types not needed</li>
+                </ul>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>First-Class Functions</h2>
+                <aside class="notes">
+
+                </aside>
+                <pre class="kotlin"><code data-trim data-noescape>
+fun bigDecimalEquals(one: BigDecimal, two: BigDecimal) : Boolean {
+  return one.compareTo(two) == 0
+}
+
+fun bigDecimalEquals(one: BigDecimal, two: BigDecimal) : Boolean
+    = one.compareTo(two) == 0
+
+val bigDecimalEquals: (Int, Int) -> Boolean
+    = { one, two -> one.compareTo(two) == 0 }
+                </code></pre>
+            </section>
+        </section>
+        <section>
+            <section data-auto-animate data-timing="30">
+                <h2>Pure Functions</h2>
+                <aside class="notes">
+                    Same inputs will always yield same outputs
+                </aside>
+                <ul>
+                    <li>Deterministic: Same inputs will always yield same outputs</li>
+                    <li>No Side-Effects: Do not access or mutate shared state</li>
+                </ul>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Pure Functions</h2>
+                <h4>Non-Deterministic</h4>
+                <aside class="notes">
+
+                </aside>
+                <pre class="kotlin"><code data-trim data-noescape>
+data class ChatMessage(
+    val user: String
+    val timestamp: Instant
+    val message: String)
+
+
+fun newMessage(message: String) : ChatMessage {
+  return ChatMessage(
+    user = System.getProperty("user.name"),
+    timestamp = Instant.now(),
+    message = message)
+}
+                </code></pre>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Pure Functions</h2>
+                <h4>Deterministic</h4>
+                <aside class="notes">
+
+                </aside>
+                <pre class="kotlin"><code data-trim data-noescape>
+data class ChatMessage(
+    val user: String
+    val timestamp: Instant
+    val message: String)
+
+fun newMessage(message: String, user: String, timestamp: Instant) : ChatMessage {
+  return ChatMessage(
+    user = user,
+    timestamp = timestamp,
+    message = message)
+}
+                </code></pre>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Pure Functions</h2>
+                <h4>Side Effects</h4>
+                <aside class="notes">
+
+                </aside>
+                <pre class="kotlin"><code data-trim data-noescape>
+fun addNewMessageSideEffect(messages: ArrayList&ltChatMessage>,
+    newMessage: ChatMessage) {
+  messages.add(newMessage)
+  // Modifies input
+}
+
+val externalMessages: List&ltChatMessage> = ArrayList()
+
+fun addNewMessageSideEffect2(newMessage: ChatMessage) {
+  externalMessages.add(newMessage)
+  // Modifies something outside of scope
+}
+                </code></pre>
+            </section>
+
+        </section>
         <section data-timing="10">
             <div class="grid-area">
                 <div style="text-align: left">
