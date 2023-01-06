@@ -132,6 +132,18 @@
                     you can mix FP with OOP
                     you can write kotlin just like OOP Java
                     but certain FP concepts are easier, or default in kotlin
+
+
+                    No program is 100% pure functional
+                    Push state out to the ‘edges’.
+                    Place application’s core data and logic in immutable constructs (value types).
+                    Represent state as objects with mutable references to immutable core constructs.
+                    Shell: OOP, state, IO, Side effects, GUI
+                    Core: Pure functions, stateless, logic
+                    Use functional parameters to inject functions with side effects
+                    Use functional parameters on the boundary of your shell/core
+
+
                 </aside>
                 <h2>What Makes Kotlin more "Functional"?</h2>
                 <ul>
@@ -311,10 +323,65 @@ fun f(x: Int) = x + 3
 
                 </aside>
                 <ul>
+                    <li class="fragment">Kotlin Scope Functions</li>
                     <li class="fragment">Collection Operations (map, filter, etc)</li>
                     <li class="fragment">Memoize</li>
                     <li class="fragment">Lazy delegate</li>
                 </ul>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h4>Kotlin Scope Functions</h4>
+                <aside class="notes">
+
+                </aside>
+                <table>
+                    <thead style="font-weight: bold;">
+                    <tr style="border-style: solid; border-width: 4px;">
+                        <td style="border-style: solid; border-width: 1px;">Function</td>
+                        <td style="border-width: 1px;">extension</td>
+                        <td style="border-style: solid; border-width: 1px;">this or it</td>
+                        <td style="border-style: solid; border-width: 1px;">Block return</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="border-style: solid;border-width: 1px;">let</td>
+                        <td style="border-style: solid;border-width: 1px;">yes</td>
+                        <td style="border-style: solid;border-width: 1px;">it</td>
+                        <td style="border-style: solid;border-width: 1px;">yes</td>
+                    </tr>
+                    <tr>
+                        <td style="border-style: solid;border-width: 1px;">run</td>
+                        <td style="border-style: solid;border-width: 1px;">yes</td>
+                        <td style="border-style: solid;border-width: 1px;">this</td>
+                        <td style="border-style: solid;border-width: 1px;">yes</td>
+                    </tr>
+                    <tr>
+                        <td style="border-style: solid;border-width: 1px;">run</td>
+                        <td style="border-style: solid;border-width: 1px;">no</td>
+                        <td style="border-style: solid;border-width: 1px;">--</td>
+                        <td style="border-style: solid;border-width: 1px;">yes</td>
+                    </tr>
+                    <tr>
+                        <td style="border-style: solid;border-width: 1px;">with</td>
+                        <td style="border-style: solid;border-width: 1px;">no</td>
+                        <td style="border-style: solid;border-width: 1px;">this</td>
+                        <td style="border-style: solid;border-width: 1px;">yes</td>
+                    </tr>
+                    <tr>
+                        <td style="border-style: solid;border-width: 1px;">apply</td>
+                        <td style="border-style: solid;border-width: 1px;">yes</td>
+                        <td style="border-style: solid;border-width: 1px;">this</td>
+                        <td style="border-style: solid;border-width: 1px;">no</td>
+                    </tr>
+                    <tr>
+                        <td style="border-style: solid;border-width: 1px;">also</td>
+                        <td style="border-style: solid;border-width: 1px;">yes</td>
+                        <td style="border-style: solid;border-width: 1px;">it</td>
+                        <td style="border-style: solid;border-width: 1px;">no</td>
+                    </tr>
+                    </tbody>
+                </table>
             </section>
         </section>
         <section>
@@ -403,8 +470,48 @@ fun f(x: Int) = x + 3
             </section>
         </section>
         <section>
+            <section data-auto-animate data-timing="30">
+                <h2>Testing with Ad-Hoc Polymorphism</h2>
+                <aside class="notes">
+
+                </aside>
+
+            </section>
+        </section>
+        <section>
+            <section data-auto-animate data-timing="30">
+                <h2>DSLs in Kotlin</h2>
+                <aside class="notes">
+
+                </aside>
+
+            </section>
+        </section>
+        <section>
             <h2>More Resources</h2>
-            <a href="https://fsharpforfunandprofit.com/posts/recipe-part2/">Railway oriented programming</a>
+            <ul>
+                <li>
+                    <a href="https://wakingrufus.neocities.org/adhoc-polymorphism.html">Using Ad-hoc Polymorphism to Test Functional Kotlin</a> - Me
+                </li>
+                <li>
+                    <a href="https://wakingrufus.neocities.org/staticwebarticle">Static Web Development with Kotlin DSLs</a> - Me
+                </li>
+                <li>
+                    <a href="https://fsharpforfunandprofit.com/posts/recipe-part2/">Railway oriented programming</a>
+                </li>
+                <li>
+                    <a href="http://www.yegor256.com/2014/06/09/objects-should-be-immutable.html">Objects Should Be Immutable</a> - <a href="http://www.yegor256.com/">Yegor Bugayenko</a>
+                </li>
+                <li>
+                    <a href="https://www.infoq.com/presentations/Value-Values">The Value of Values</a> - <a href="https://twitter.com/richhickey">Rich Hickey</a>
+                </li>
+                <li>
+                    <a href="https://gist.github.com/kbilsted/abdc017858cad68c3e7926b03646554e">Functional Core, Imperative Shell</a> - <a href="http://firstclassthoughts.co.uk/">Kasper B. Graversen</a>
+                </li>
+                <li>
+                    <a href="https://kotlinexpertise.com/coping-with-kotlins-scope-functions/">Coping with Kotlin's Scope Functions</a> - <a href="https://simon-wirtz.de/">Simon Wirtz</a>
+                </li>
+            </ul>
         </section>
         <section data-timing="10">
             <div class="grid-area">
