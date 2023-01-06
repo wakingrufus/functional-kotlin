@@ -95,35 +95,52 @@
                 <h2>What is Functional Programming?</h2>
             </section>
             <section data-auto-animate data-timing="30">
-                <h2>Similar Principles as OOP</h2>
+                <h2>What is Functional Programming?</h2>
+                <h4>Similar Principles as OOP</h4>
                 <aside class="notes">
 
                 </aside>
                 <ul>
-                    <li>Encapsulation</li>
-                    <li>DRY</li>
+                    <li class="fragment">Encapsulation</li>
+                    <li class="fragment">DRY</li>
+                    <li class="fragment">GoF Design Patterns</li>
+                    <li class="fragment">Favor composition over inheritance</li>
                 </ul>
             </section>
             <section data-auto-animate data-timing="30">
-                <h2>Differences from OOP</h2>
+                <h2>What is Functional Programming?</h2>
+                <h4>Differences from OOP</h4>
                 <ul>
-                    <li>Verbs vs Nouns</li>
-                    <li>Limit mutable state</li>
+                    <li class="fragment">Verbs vs Nouns</li>
+                    <li class="fragment">Limit mutable state</li>
                 </ul>
             </section>
-
+            <section data-auto-animate data-timing="30">
+                <h2>What is Functional Programming?</h2>
+                <h4>Java vs Kotlin</h4>
+                <ul>
+                    <li class="fragment">no real world projects should be pure OOP or FP</li>
+                    <li class="fragment">Both are multi-paradigm</li>
+                    <li class="fragment">Kotlin gives us more FP</li>
+                </ul>
+            </section>
         </section>
         <section>
             <section data-auto-animate data-timing="30">
-                <h2>What Makes Code "Functional"?</h2>
+                <aside class="notes">
+                kotlin is multiparadigm
+                    you can mix FP with OOP
+                    you can write kotlin just like OOP Java
+                    but certain FP concepts are easier, or default in kotlin
+                </aside>
+                <h2>What Makes Kotlin more "Functional"?</h2>
                 <ul>
-                    <li>Immutable Data</li>
-                    <li>"First-class" Functions</li>
-                    <li>Pure Functions</li>
-                    <li>Higher Order Functions</li>
+                    <li class="fragment">Immutable Data</li>
+                    <li class="fragment">"First-class" Functions</li>
+                    <li class="fragment">Pure Functions</li>
+                    <li class="fragment">Higher Order Functions</li>
                 </ul>
             </section>
-
         </section>
         <section>
             <section data-auto-animate data-timing="30">
@@ -132,11 +149,11 @@
                     Value of Values by Rich Hickey
                 </aside>
                 <ul>
-                    <li>Thread safe</li>
-                    <li>Avoids temporal coupling</li>
-                    <li>No need for defensive copies</li>
-                    <li>Helps prevent side effects</li>
-                    <li>Easier to cache</li>
+                    <li class="fragment">Thread safe</li>
+                    <li class="fragment">Avoids temporal coupling</li>
+                    <li class="fragment">No need for defensive copies</li>
+                    <li class="fragment">Helps prevent side effects</li>
+                    <li class="fragment">Easier to cache</li>
                 </ul>
             </section>
             <section data-auto-animate data-timing="30">
@@ -157,11 +174,11 @@ data class ImmutableDataValue(val stringData: String)
 
                 </aside>
                 <ul>
-                    <li>Classes are nouns</li>
-                    <li>Methods are verbs</li>
-                    <li>Functions are verbs and gerunds</li>
-                    <li>Kotlin has first class functions</li>
-                    <li>Static methods and functional types not needed</li>
+                    <li class="fragment">Classes are nouns</li>
+                    <li class="fragment">Methods are verbs</li>
+                    <li class="fragment">Functions are verbs and gerunds</li>
+                    <li class="fragment">Kotlin has first class functions</li>
+                    <li class="fragment">Static methods and functional types not needed</li>
                 </ul>
             </section>
             <section data-auto-animate data-timing="30">
@@ -189,13 +206,13 @@ val bigDecimalEquals: (Int, Int) -> Boolean
                     Same inputs will always yield same outputs
                 </aside>
                 <ul>
-                    <li>Deterministic: Same inputs will always yield same outputs</li>
-                    <li>No Side-Effects: Do not access or mutate shared state</li>
+                    <li class="fragment">Deterministic: Same inputs will always yield same outputs</li>
+                    <li class="fragment">No Side-Effects: Do not access or mutate shared state</li>
                 </ul>
             </section>
             <section data-auto-animate data-timing="30">
                 <h2>Pure Functions</h2>
-                <h4>Non-Deterministic</h4>
+                <h4 data-id="subtitle">Non-Deterministic</h4>
                 <aside class="notes">
 
                 </aside>
@@ -216,7 +233,7 @@ fun newMessage(message: String) : ChatMessage {
             </section>
             <section data-auto-animate data-timing="30">
                 <h2>Pure Functions</h2>
-                <h4>Deterministic</h4>
+                <h4 data-id="subtitle">Deterministic</h4>
                 <aside class="notes">
 
                 </aside>
@@ -226,7 +243,10 @@ data class ChatMessage(
     val timestamp: Instant
     val message: String)
 
-fun newMessage(message: String, user: String, timestamp: Instant) : ChatMessage {
+fun newMessage(
+    message: String,
+    user: String,
+    timestamp: Instant) : ChatMessage {
   return ChatMessage(
     user = user,
     timestamp = timestamp,
@@ -236,7 +256,7 @@ fun newMessage(message: String, user: String, timestamp: Instant) : ChatMessage 
             </section>
             <section data-auto-animate data-timing="30">
                 <h2>Pure Functions</h2>
-                <h4>Side Effects</h4>
+                <h4 data-id="subtitle">Side Effects</h4>
                 <aside class="notes">
 
                 </aside>
@@ -256,6 +276,135 @@ fun addNewMessageSideEffect2(newMessage: ChatMessage) {
                 </code></pre>
             </section>
 
+        </section>
+        <section>
+            <section data-auto-animate data-timing="30">
+                <h2>Higher-Order Functions</h2>
+                <aside class="notes">
+
+                </aside>
+                <ul>
+                    <li class="fragment">Take a function as an input</li>
+                    <li class="fragment">Return a function as output</li>
+                </ul>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Higher-Order Functions</h2>
+                <aside class="notes">
+                    abstract code structure.
+                    Encapsulate more abstract concepts,
+                    this is why adv. FP has all these complex concepts
+                </aside>
+                <pre class="kotlin"><code data-trim data-noescape>
+fun twice(f: (T)->T) : (T)->T = f(f(it))
+
+fun f(x: Int) = x + 3
+
+{
+  println(twice(::f)(7)) // prints "13"
+}
+                </code></pre>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Higher-Order Functions</h2>
+                <aside class="notes">
+
+                </aside>
+                <ul>
+                    <li class="fragment">Collection Operations (map, filter, etc)</li>
+                    <li class="fragment">Memoize</li>
+                    <li class="fragment">Lazy delegate</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <section data-auto-animate data-timing="30">
+                <h2>Types</h2>
+                <aside class="notes">
+                    How does the type system help you write functional code?
+                    throwing exceptions is a side effect. we need to avoid it so that our functions truly only have a single defined return value
+                    no NPE, no other exceptions, etc
+                </aside>
+                <ul>
+                    <li class="fragment">Nullability</li>
+                    <li class="fragment">Sealed Classes</li>
+                    <li class="fragment">Pattern Matching</li>
+                </ul>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Types</h2>
+                <h4>Monad</h4>
+                <aside class="notes">
+                    Monads are important to FP b/c they wrap our common higher order functions into something more tangible,
+                    and make them composable
+                </aside>
+                <ul>
+                    <li class="fragment">Higher-order function as an object</li>
+                    <li class="fragment">Composable</li>
+                </ul>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Types</h2>
+                <h4>Optional</h4>
+                <aside class="notes">
+                    Java optionals
+                    Kotlin bakes this into nullable types, but its still a monad, we just have nice syntax sugar around it
+                </aside>
+                <ul>
+
+                </ul>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Types</h2>
+                <h4>Either</h4>
+                <aside class="notes">
+                </aside>
+                <ul>
+
+                </ul>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Types</h2>
+                <h4>Try</h4>
+                <aside class="notes">
+                </aside>
+                <ul>
+
+                </ul>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Types</h2>
+                <h4>Other</h4>
+                <aside class="notes">
+                </aside>
+                <ul>
+                    <li>Java's CompletableFuture</li>
+                    <li>ArrowKt's IO</li>
+                    <li>Validated</li>
+                    <li>Collections</li>
+                    <li>Ior</li>
+                </ul>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Pattern Matching with Sealed Classes</h2>
+                <aside class="notes">
+
+                </aside>
+
+            </section>
+        </section>
+        <section>
+            <section data-auto-animate data-timing="30">
+                <h2>Railway-Oriented Programming</h2>
+                <aside class="notes">
+
+                </aside>
+
+            </section>
+        </section>
+        <section>
+            <h2>More Resources</h2>
+            <a href="https://fsharpforfunandprofit.com/posts/recipe-part2/">Railway oriented programming</a>
         </section>
         <section data-timing="10">
             <div class="grid-area">
