@@ -86,15 +86,16 @@
             <h4 class="fragment">Experienced with OOP Java</h4>
             <h4 class="fragment">Experienced with Functional Programming</h4>
             <h4 class="fragment">Experienced with Kotlin</h4>
+            <h4 class="fragment">Experienced with FP + Kotlin</h4>
             <aside class="notes">
 
             </aside>
         </section>
         <section>
-            <section data-auto-animate data-timing="90">
+            <section data-auto-animate data-timing="30">
                 <h2>What is Functional Programming?</h2>
             </section>
-            <section data-auto-animate data-timing="30">
+            <section data-auto-animate data-timing="60">
                 <h2>What is Functional Programming?</h2>
                 <h4>Similar Principles as OOP</h4>
                 <aside class="notes">
@@ -108,7 +109,7 @@
                     <li class="fragment">Favor composition over inheritance</li>
                 </ul>
             </section>
-            <section data-auto-animate data-timing="30">
+            <section data-auto-animate data-timing="90">
                 <h2>What is Functional Programming?</h2>
                 <h4>Differences from OOP</h4>
                 <aside class="notes">
@@ -119,27 +120,15 @@
                     <li class="fragment">Limit mutable state</li>
                 </ul>
             </section>
-            <section data-auto-animate data-timing="30">
+            <section data-auto-animate data-timing="120">
                 <h2>What is Functional Programming?</h2>
                 <h4>What is a functional language?</h4>
                 <aside class="notes">
                     for us, it doesn't matter
                     kotlin is multiparadigm
-                    you can mix FP with OOP
                     you can write kotlin just like OOP Java
-                    but certain FP concepts are easier, or default in kotlin
-                </aside>
-                <ul>
-                    <li class="fragment">real world projects are rarely pure OOP or FP</li>
-                    <li class="fragment">Java and Kotlin are multi-paradigm</li>
-                    <li class="fragment">Kotlin gives us more FP</li>
-                </ul>
-            </section>
-        </section>
-        <section>
-            <section data-auto-animate data-timing="30">
-                <h2>What Makes Kotlin more "Functional"?</h2>
-                <aside class="notes">
+                    you can mix FP with OOP
+                    real programs have side effects
                     No program is 100% pure functional
                     Push state out to the ‘edges’.
                     Place application’s core data and logic in immutable constructs (value types).
@@ -148,6 +137,19 @@
                     Core: Pure functions, stateless, logic
                     Use functional parameters to inject functions with side effects
                     Use functional parameters on the boundary of your shell/core
+                    but certain FP concepts are easier, or default in kotlin
+                </aside>
+                <ul>
+                    <li class="fragment">Java and Kotlin are multi-paradigm</li>
+                    <li class="fragment">real world projects are rarely pure OOP or FP</li>
+                    <li class="fragment">Kotlin gives us more FP</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <section data-auto-animate data-timing="30">
+                <h2>What Makes Kotlin more "Functional"?</h2>
+                <aside class="notes">
                 </aside>
                 <ul>
                     <li class="fragment">Immutable Data</li>
@@ -158,7 +160,7 @@
             </section>
         </section>
         <section>
-            <section data-auto-animate data-timing="30">
+            <section data-auto-animate data-timing="90">
                 <h2>Immutable Data</h2>
                 <aside class="notes">
                     Value of Values by Rich Hickey
@@ -174,7 +176,8 @@
             <section data-auto-animate data-timing="30">
                 <h2>Immutable Data</h2>
                 <aside class="notes">
-                    keep state and behavior seperate
+                    in OOP classes have data nd behavior
+                    in FP, keep state and behavior separate
                     classes for data, functions for behavior
                 </aside>
                 <pre class="kotlin"><code data-trim data-noescape>
@@ -183,10 +186,12 @@ data class ImmutableDataValue(val stringData: String)
             </section>
         </section>
         <section>
-            <section data-auto-animate data-timing="30">
+            <section data-auto-animate data-timing="60">
                 <h2>First-Class Functions</h2>
                 <aside class="notes">
                     This makes the next 2 things easier to do.
+                    I run
+                    I like running
                 </aside>
                 <ul>
                     <li class="fragment">Classes are nouns</li>
@@ -196,7 +201,7 @@ data class ImmutableDataValue(val stringData: String)
                     <li class="fragment">Static methods and functional types not needed</li>
                 </ul>
             </section>
-            <section data-auto-animate data-timing="30">
+            <section data-auto-animate data-timing="120">
                 <h2>First-Class Functions</h2>
                 <aside class="notes">
 
