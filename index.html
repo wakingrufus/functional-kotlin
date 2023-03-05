@@ -55,14 +55,13 @@
                 <div style="text-align: left">
                     <p>Staff Engineer @ GrubHub</p>
                     <p>CKUG Co-Organizer</p>
+                    <p>ktlint-gradle Maintainer</p>
                     <p class="inline-image"><img alt="twitter logo" src="Twitter-Logo.png" height="48" width="48"/>
-                        <span style="padding-left: .5em">@wakingrufus</span></p>
+                        <span style="padding-left: .5em; padding-right: 2em;">@wakingrufus</span>
+                        <img alt="github logo" src="github-logo.png" height="48" width="48"/>
+                        <span style="padding-left: .5em">wakingrufus</span></p>
                     <p class="inline-image"><img alt="fediverse logo" src="fediverse.png" height="48" width="48"/>
                         <span style="padding-left: .5em">@wakingrufus@bigshoulders.city</span>
-                    </p>
-                    <p></p>
-                    <p class="inline-image"><img alt="github logo" src="github-logo.png" height="48" width="48"/>
-                        <span style="padding-left: .5em">wakingrufus</span>
                     </p>
                 </div>
             </div>
@@ -75,7 +74,6 @@
                 What I do: Service Platform Engineering: JVM Stewardship
             </aside>
             <ul>
-                <li>Fully Remote and Hybrid Remote Roles</li>
                 <li>Unlimited PTO</li>
                 <li>8-16 weeks of parental leave</li>
                 <li>4.5 day work week</li>
@@ -97,9 +95,10 @@
                 <aside class="notes">
                     Some people know FP only as collection operations, filter/map
                     this is just one particular impl of FP
+                    i will define it in practical term, not mathematical
                 </aside>
             </section>
-            <section data-auto-animate data-timing="60">
+            <section data-auto-animate data-timing="90">
                 <h2>What is Functional Programming?</h2>
                 <h4>Similar Principles as OOP</h4>
                 <aside class="notes">
@@ -124,14 +123,25 @@
                     <li class="fragment">Limit mutable state</li>
                 </ul>
             </section>
-            <section data-auto-animate data-timing="180">
+            <section data-auto-animate data-timing="60">
                 <h2>What is Functional Programming?</h2>
                 <h4>What is a functional language?</h4>
                 <aside class="notes">
+                    these principals can apply to any language, so what makes a functional lang?
                     for us, it doesn't matter
-                    kotlin is multiparadigm
+                    java and kotlin are both multiparadigm
                     you can write kotlin just like OOP Java
                     you can mix FP with OOP
+                </aside>
+                <ul>
+                    <li class="fragment">Java and Kotlin are multi-paradigm</li>
+                    <li class="fragment">real world projects are rarely pure OOP or FP</li>
+                </ul>
+            </section>
+            <section data-auto-animate data-timing="60">
+                <h2>What is Functional Programming?</h2>
+                <h4>Functional Core, Imperative Shell</h4>
+                <aside class="notes">
                     real programs have side effects
                     No program is 100% pure functional
                     Push state out to the ‘edges’.
@@ -139,21 +149,29 @@
                     Represent state as objects with mutable references to immutable core constructs.
                     Shell: OOP, state, IO, Side effects, GUI
                     Core: Pure functions, stateless, logic
-                    Use functional parameters to inject functions with side effects
-                    Use functional parameters on the boundary of your shell/core
-                    but certain FP concepts are easier, or default in kotlin
                 </aside>
                 <ul>
-                    <li class="fragment">Java and Kotlin are multi-paradigm</li>
-                    <li class="fragment">real world projects are rarely pure OOP or FP</li>
-                    <li class="fragment">Kotlin gives us more tools for FP</li>
+                    <li class="fragment">Shell: OOP, state, IO, Side effects, GUI</li>
+                    <li class="fragment">Core: Pure functions, stateless, logic</li>
                 </ul>
             </section>
         </section>
         <section> <!-- what makes kotlin more functional -->
+            <section data-auto-animate data-timing="45">
+                <h2>What Makes Kotlin more "Functional"?</h2>
+                <aside class="notes">
+                    so how much of your code is core vs shell?
+                    in kotlin, a higher ratio of core is possible
+                    Certain FP concepts are easier, or default in Kotlin
+                </aside>
+                <ul>
+                    <li class="fragment">Kotlin gives us more tools for FP</li>
+                </ul>
+            </section>
             <section data-auto-animate data-timing="60">
                 <h2>What Makes Kotlin more "Functional"?</h2>
                 <aside class="notes">
+                    Very quickly, I want to outline some examples
                 </aside>
                 <ul>
                     <li class="fragment">Pure Functions</li>
@@ -166,10 +184,13 @@
             </section>
         </section>
         <section> <!-- Immutable Data -->
-            <section data-auto-animate data-timing="90">
+            <section data-auto-animate data-timing="120">
                 <h2>Immutable Data</h2>
                 <aside class="notes">
                     Value of Values by Rich Hickey
+                    in OOP classes have data and behavior
+                    in FP, keep state and behavior separate (class / function)
+                    we like immutable data classes for the following benefits
                 </aside>
                 <ul>
                     <li class="fragment">Thread safe</li>
@@ -182,8 +203,6 @@
             <section data-auto-animate data-timing="90">
                 <h2>Immutable Data</h2>
                 <aside class="notes">
-                    in OOP classes have data and behavior
-                    in FP, keep state and behavior separate (class / function)
                     in java we need getters, tostring, eq hashcode
                     you can use lombok or ide to generate
                     in kotlin, its first class keyword "data class"
@@ -201,7 +220,6 @@ data class ImmutableDataValue(val stringData: String)
                 <aside class="notes">
                     Pure functions can be written in java or kotlin
                     its a good practice in both
-                    kotlin makes it easier
                 </aside>
                 <ul>
                     <li class="fragment">Deterministic: Same inputs will always yield same outputs</li>
@@ -229,7 +247,7 @@ fun newMessage(message: String) : ChatMessage {
 }
                 </code></pre>
             </section>
-            <section data-auto-animate data-timing="60">
+            <section data-auto-animate data-timing="30s">
             <h2>Pure Functions</h2>
             <h4 data-id="subtitle">Deterministic</h4>
             <aside class="notes">
@@ -324,6 +342,8 @@ val bigDecimalEquals: (Int, Int) -> Boolean
             <section data-auto-animate data-timing="90">
                 <h2>Functional Types</h2>
                 <aside class="notes">
+                    In java, func interfaces let us inline impls as lambdas
+                    in kotlin, we can express the SAM sig as a type
                 </aside>
                 <ul>
                     <li class="fragment">@FunctionalInterface</li>
@@ -361,7 +381,7 @@ val bigDecimalEquals: (Int, Int) -> Boolean
                     }
                 </code></pre>
             </section>
-            <section data-auto-animate data-timing="120">
+            <section data-auto-animate data-timing="90">
                 <h2>Functional Types</h2>
                 <aside class="notes">
 
@@ -405,7 +425,7 @@ val bigDecimalEquals: (Int, Int) -> Boolean
                     this is why adv. FP has all these complex concepts
                 </aside>
                 <pre class="kotlin"><code data-trim data-noescape>
-                    fun twice(f: (T)->T)) : (T)->T = f(f(it))
+                    fun &lt;T> twice(f: (T)->T) : (T)->T = { t -> f(f(t))}
 
                     fun addThree(x: Int) = x + 3
 
@@ -465,14 +485,10 @@ val bigDecimalEquals: (Int, Int) -> Boolean
                 <aside class="notes">
                 </aside>
                 <pre class="kotlin"><code data-trim data-noescape>
-                    sealed class Thing {
-                        class Thing1: Thing {
-                            fun do1() { }
-                        }
-                        class Thing2 : Thing {
-                            fun do2() { }
-                        }
-                    }
+sealed class Thing {
+    class Thing1(val thing1: String): Thing()
+    class Thing2(val thing2: Int) : Thing()
+}
                 </code></pre>
             </section>
             <section data-auto-animate data-timing="45">
@@ -483,8 +499,8 @@ val bigDecimalEquals: (Int, Int) -> Boolean
                 <pre class="kotlin"><code data-trim data-noescape>
                     val thing: Thing
                     when(thing){
-                        is Thing1 -> thing.do1()
-                        is Thing2 -> thing.do2()
+                        is Thing1 -> thing.thing1 // String
+                        is Thing2 -> thing.thing2 // Int
                     }
                 </code></pre>
             </section>
@@ -493,10 +509,10 @@ val bigDecimalEquals: (Int, Int) -> Boolean
             <section data-auto-animate data-timing="90">
                 <h2>Monads</h2>
                 <aside class="notes">
+                    I will try to break the monadic curse
                     Monads are important to FP b/c they wrap our common higher order functions into something more tangible,
                     and make them composable
-
-                    composable means they are easy to apply another higher order function to, and retain the same type
+                    they are easy to apply another higher order function to, and retain the same type
                     think Optional.or() or Stream.map in java
                 </aside>
                 <ul>
@@ -504,11 +520,11 @@ val bigDecimalEquals: (Int, Int) -> Boolean
                     <li class="fragment">Composable</li>
                 </ul>
             </section>
-            <section data-auto-animate data-timing="120">
+            <section data-auto-animate data-timing="60">
                 <h2>Monads</h2>
                 <h4>Optional</h4>
                 <aside class="notes">
-                    Java optionals
+                    Java optionals abstract over null-check
                     Kotlin bakes this into nullable types, but its still a monad, we just have nice syntax sugar around it
                 </aside>
                 <pre class="java"><code data-trim data-noescape>
@@ -582,6 +598,15 @@ when (result) {
             </section>
         </section>
         <section> <!-- railway -->
+            <section data-auto-animate data-timing="60">
+                <h2>Railway-Oriented Programming</h2>
+                <aside class="notes">
+                    Try is so powerful, the concept of just chaining them together has created a whole new paradigm
+                </aside>
+<img src="RailwaySwitch3.png" />
+                <p>Credit: Scott Wlaschin</p>
+                <p><a href="https://fsharpforfunandprofit.com">fsharpforfunandprofit.com</a></p>
+            </section>
             <section data-auto-animate data-timing="200">
                 <h2>Railway-Oriented Programming</h2>
                 <h4>Monad Chains</h4>
@@ -609,17 +634,18 @@ when (result) {
                 <h2>Railway-Oriented Programming</h2>
                 <h4>Monad Chains</h4>
                 <aside class="notes">
+
                 </aside>
                 <pre class="kotlin"><code data-trim data-noescape>
 fun myFunct1(s: String) : Try&lt;Int> = doTry { it.length }
-fun &lt;A, B> Try&lt;A>.andThen(next: (A) -> Try&lt;B>): Try&lt;B> {
+fun &lt;A, B> Try&lt;A>.flatMap(next: (A) -> Try&lt;B>): Try&lt;B> {
     return when (this) {
         is Try.Success -> next(this.value)
         is Try.Failure -> Try.Failure&lt;B>(this.exception)
     }
 }
 val result = doTry { "" }
-    .andThen { myFunc1(it) }
+    .flatMap { myFunc1(it) }
 when (result) {
     is Try.Failure -> result.exception
     is Try.Success -> result.value
@@ -631,9 +657,59 @@ when (result) {
             <section data-auto-animate data-timing="30">
                 <h2>Testing</h2>
                 <aside class="notes">
-
+                    Dependency injection is a pattern very commonly used in Object-Oriented Java.
+                    It is sometimes done using frameworks such as Dagger, Spring, or Guice,
+                    and sometimes it is as simple as making sure all dependencies of a class are provided through the constructor.
+                    One of the major benefits of dependency injection is that it gives you the ability to isolate a
+                    class for testing by injecting mocks.
+                    For example: FizzBuzzRunner will print to System.out in production, but we can inject a mock PrintStream for testing.
                 </aside>
+                <pre class="java"><code data-trim data-noescape>
+class FizzBuzzRunner( val linePrinter: PrintStream = System.out) {
 
+  fun fizzBuzz(limit: Int) {
+    for(i in 1..limit) {
+      linePrinter.println(calculateValueForNumber(i))
+    }
+  }
+
+  fun calculateValueForNumber(number: Int) {
+    val sb = StringBuilder()
+    if (number % 3 == 0) {  sb.append("FIZZ") }
+    if (number % 5 == 0) {  sb.append("BUZZ") }
+    if (sb.isEmpty()) {  sb.append(number) }
+    return sb.toString()
+  }
+}
+                </code></pre>
+            </section>
+            <section data-auto-animate data-timing="30">
+                <h2>Testing</h2>
+                <aside class="notes">
+                    Now lets look at and FP example
+                    print function has isolated output side effect, but now its directly called, can't mock
+                </aside>
+                <pre class="kotlin"><code data-trim data-noescape>
+fun fizzBuzz(limit: Int) {
+  for(i in 1..limit) {
+    print(calculateValueForNumber(i))
+  }
+}
+
+
+fun calculateValueForNumber(number: Int) {
+  val sb = StringBuilder()
+  if (number % 3 == 0) {  sb.append("FIZZ") }
+  if (number % 5 == 0) {  sb.append("BUZZ") }
+  if (sb.isEmpty()) {  sb.append(number) }
+  return sb.toString()
+}
+
+
+fun print(string: String) {
+  System.out.println(string)
+}
+                </code></pre>
             </section>
         </section>
         <section> <!-- DSLs -->
@@ -655,7 +731,7 @@ when (result) {
                     <a href="https://wakingrufus.neocities.org/staticwebarticle">Static Web Development with Kotlin DSLs</a> - Me
                 </li>
                 <li>
-                    <a href="https://fsharpforfunandprofit.com/posts/recipe-part2/">Railway oriented programming</a>
+                    <a href="https://fsharpforfunandprofit.com/posts/recipe-part2/">Railway oriented programming</a> - Scott Wlaschin
                 </li>
                 <li>
                     <a href="http://www.yegor256.com/2014/06/09/objects-should-be-immutable.html">Objects Should Be Immutable</a> - <a href="http://www.yegor256.com/">Yegor Bugayenko</a>
@@ -674,11 +750,13 @@ when (result) {
         <section data-timing="10">
             <div class="grid-area">
                 <div style="text-align: left">
-                    <div>https://wakingrufus.github.io/kotlin-2022/</div>
+                    <div><a href="https://wakingrufus.github.io/functional-kotlin/">https://wakingrufus.github.io/functional-kotlin/</a></div>
                     <p class="inline-image"><img alt="twitter logo" src="Twitter-Logo.png" height="48" width="48"/>
-                        <span style="padding-left: .5em">@wakingrufus</span></p>
+                        <span style="padding-left: .5em; padding-right: 2em;">@wakingrufus</span>
+                        <img alt="github logo" src="github-logo.png" height="48" width="48"/>
+                        <span style="padding-left: .5em">wakingrufus</span></p>
                     <p class="inline-image"><img alt="fediverse logo" src="fediverse.png" height="48" width="48"/>
-                        <span style="padding-left: .5em">@wakingrufus@mastodon.technology</span>
+                        <span style="padding-left: .5em">@wakingrufus@bigshoulders.city</span>
                     </p>
                 </div>
             </div>
