@@ -686,7 +686,7 @@ class FizzBuzzRunner( val linePrinter: PrintStream = System.out) {
             <section data-auto-animate data-timing="30">
                 <h2>Testing</h2>
                 <aside class="notes">
-                    Now lets look at and FP example
+                    Now lets look at an FP example
                     print function has isolated output side effect, but now its directly called, can't mock
                 </aside>
                 <pre class="kotlin"><code data-trim data-noescape>
@@ -711,14 +711,31 @@ fun print(string: String) {
 }
                 </code></pre>
             </section>
-        </section>
-        <section> <!-- DSLs -->
             <section data-auto-animate data-timing="30">
-                <h2>DSLs in Kotlin</h2>
+                <h2>Testing</h2>
                 <aside class="notes">
 
                 </aside>
-
+                <pre class="kotlin"><code data-trim data-noescape>
+fun fizzBuzz(
+    limit: Int,
+    printer: (String) -> Unit = ::print
+) {
+  for(i in 1..limit) {
+    printer.invoke(calculateValueForNumber(i))
+  }
+}
+                </code></pre>
+                <pre class="kotlin"><code data-trim data-noescape>
+fizzBuzz(4)
+                </code></pre>
+                <pre class="kotlin"><code data-trim data-noescape>
+fun test() {
+  val outputList = ArrayList&lt;String>()
+  fizzBuzz(6) { outputList.add(it) }
+  assertThat(outputList[2]).isEqualTo("FIZZ")
+}
+                </code></pre>
             </section>
         </section>
         <section>
@@ -778,8 +795,6 @@ fun print(string: String) {
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
     });
-
-
 </script>
 </body>
 </html>
