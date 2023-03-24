@@ -38,14 +38,14 @@
 <body>
 <div class="reveal">
     <div class="slides">
-        <section data-timing="20">
+        <section data-timing="60">
             <h1>Functional Kotlin</h1>
 <!--            <img alt="necronomicon but with the gradle logo" src="gradlenomicon.jpg" height="466" width="386">-->
             <aside class="notes">
 
             </aside>
         </section>
-        <section data-timing="60">
+        <section data-timing="30s">
             <h1>About Me</h1>
             <aside class="notes">
                 You can also find me on the Chicago Tech and Kotlin slacks and the CJUG discord
@@ -157,7 +157,7 @@
             </section>
         </section>
         <section> <!-- what makes kotlin more functional -->
-            <section data-auto-animate data-timing="45">
+            <section data-auto-animate data-timing="30">
                 <h2>What Makes Kotlin more "Functional"?</h2>
                 <aside class="notes">
                     so how much of your code is core vs shell?
@@ -184,7 +184,7 @@
             </section>
         </section>
         <section> <!-- Immutable Data -->
-            <section data-auto-animate data-timing="120">
+            <section data-auto-animate data-timing="90">
                 <h2>Immutable Data</h2>
                 <aside class="notes">
                     Value of Values by Rich Hickey
@@ -215,7 +215,7 @@ data class ImmutableDataValue(val stringData: String)
             </section>
         </section>
         <section> <!-- pure functions -->
-            <section data-auto-animate data-timing="60">
+            <section data-auto-animate data-timing="30">
                 <h2>Pure Functions</h2>
                 <aside class="notes">
                     Pure functions can be written in java or kotlin
@@ -351,7 +351,7 @@ val bigDecimalEquals: (Int, Int) -> Boolean
                     <li class="fragment">Allow you to declare functional params</li>
                 </ul>
             </section>
-            <section data-auto-animate data-timing="90">
+            <section data-auto-animate data-timing="60">
                 <h2>Functional Types</h2>
                 <aside class="notes">
                     first, lets look at java
@@ -654,17 +654,23 @@ when (result) {
             </section>
         </section>
         <section> <!-- testing -->
-            <section data-auto-animate data-timing="30">
+            <section data-auto-animate data-timing="60">
                 <h2>Testing</h2>
                 <aside class="notes">
-                    Dependency injection is a pattern very commonly used in Object-Oriented Java.
+                    DI is a pattern very commonly used in Object-Oriented Java.
                     It is sometimes done using frameworks such as Dagger, Spring, or Guice,
-                    and sometimes it is as simple as making sure all dependencies of a class are provided through the constructor.
+                    and sometimes plain constructor injection.
                     One of the major benefits of dependency injection is that it gives you the ability to isolate a
                     class for testing by injecting mocks.
-                    For example: FizzBuzzRunner will print to System.out in production, but we can inject a mock PrintStream for testing.
+                    </aside>
+            </section>
+            <section data-auto-animate data-timing="60">
+                <h2>Testing</h2>
+                <aside class="notes">
+                    For example: FizzBuzzRunner will print to System.out in production,
+                    but we can inject a mock PrintStream for testing.
                 </aside>
-                <pre class="java"><code data-trim data-noescape>
+                <pre class="kotlin"><code data-trim data-noescape>
 class FizzBuzzRunner( val linePrinter: PrintStream = System.out) {
 
   fun fizzBuzz(limit: Int) {
@@ -673,7 +679,7 @@ class FizzBuzzRunner( val linePrinter: PrintStream = System.out) {
     }
   }
 
-  fun calculateValueForNumber(number: Int) {
+  fun calculateValueForNumber(number: Int) : String {
     val sb = StringBuilder()
     if (number % 3 == 0) {  sb.append("FIZZ") }
     if (number % 5 == 0) {  sb.append("BUZZ") }
@@ -683,11 +689,13 @@ class FizzBuzzRunner( val linePrinter: PrintStream = System.out) {
 }
                 </code></pre>
             </section>
-            <section data-auto-animate data-timing="30">
+            <section data-auto-animate data-timing="90">
                 <h2>Testing</h2>
                 <aside class="notes">
                     Now lets look at an FP example
                     print function has isolated output side effect, but now its directly called, can't mock
+                    What do? component test?
+                    yes but makes edge cases harder to test
                 </aside>
                 <pre class="kotlin"><code data-trim data-noescape>
 fun fizzBuzz(limit: Int) {
@@ -697,7 +705,7 @@ fun fizzBuzz(limit: Int) {
 }
 
 
-fun calculateValueForNumber(number: Int) {
+fun calculateValueForNumber(number: Int) : String {
   val sb = StringBuilder()
   if (number % 3 == 0) {  sb.append("FIZZ") }
   if (number % 5 == 0) {  sb.append("BUZZ") }
@@ -711,7 +719,7 @@ fun print(string: String) {
 }
                 </code></pre>
             </section>
-            <section data-auto-animate data-timing="30">
+            <section data-auto-animate data-timing="60">
                 <h2>Testing</h2>
                 <aside class="notes">
 
@@ -731,7 +739,7 @@ fizzBuzz(4)
                 </code></pre>
                 <pre class="kotlin"><code data-trim data-noescape>
 fun test() {
-  val outputList = ArrayList&lt;String>()
+  val outputList = mutableListOf&lt;String>()
   fizzBuzz(6) { outputList.add(it) }
   assertThat(outputList[2]).isEqualTo("FIZZ")
 }
