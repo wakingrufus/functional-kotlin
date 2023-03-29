@@ -178,8 +178,8 @@
                     Very quickly, I want to outline some examples
                 </aside>
                 <ul>
-                    <li class="fragment">Pure Functions</li>
                     <li class="fragment">Immutable Data</li>
+                    <li class="fragment">Pure Functions</li>
                     <li class="fragment">"First-class" Functions</li>
                     <li class="fragment">Functional Types</li>
                     <li class="fragment">Higher Order Functions</li>
@@ -219,7 +219,7 @@ data class ImmutableDataValue(val stringData: String)
             </section>
         </section>
         <section> <!-- pure functions -->
-            <section data-auto-animate data-timing="30">
+            <section data-auto-animate data-timing="45">
                 <h2>Pure Functions</h2>
                 <aside class="notes">
                     Pure functions can be written in java or kotlin
@@ -228,6 +228,7 @@ data class ImmutableDataValue(val stringData: String)
                 <ul>
                     <li class="fragment">Deterministic: Same inputs will always yield same outputs</li>
                     <li class="fragment">No Side-Effects: Do not access or mutate shared state</li>
+                    <li class="fragment">Much easier to test</li>
                 </ul>
             </section>
             <section data-auto-animate data-timing="30">
@@ -419,7 +420,40 @@ val bigDecimalEquals: (Int, Int) -> Boolean
                 <ul>
                     <li class="fragment">Take a function as an input</li>
                     <li class="fragment">Return a function as output</li>
+                    <li class="fragment">Replace Dependency Injection</li>
+                    <li class="fragment">Abstraction over control flow</li>
                 </ul>
+            </section>
+            <section data-auto-animate data-timing="60">
+                <h2>Higher-Order Functions</h2>
+                <aside class="notes">
+                    DI is a pattern very commonly used in Object-Oriented Java.
+                    It is sometimes done using frameworks such as Dagger, Spring, or Guice,
+                    and sometimes plain constructor injection.
+                    One of the major benefits of dependency injection is that it gives you the ability to isolate a
+                    class for testing by injecting mocks.
+                </aside>
+                <h4>Replace Dependency Injection</h4>
+                <pre class="kotlin"><code data-trim data-noescape>
+fun newMessage(
+    message: String,
+    user: String,
+    timestamp: () -> Instant = { Instant.now() }
+) : ChatMessage {
+  return ChatMessage(
+    user = user,
+    timestamp = timestamp(),
+    message = message)
+}
+                </code></pre>
+                <pre class="kotlin fragment"><code data-trim data-noescape>
+                    newMessage("message", "user") // production code
+
+                    // test code
+                    newMessage("message", "user") {
+                        Instant.EPOCH
+                    }
+                </code></pre>
             </section>
             <section data-auto-animate data-timing="200">
                 <h2>Higher-Order Functions</h2>
@@ -429,13 +463,15 @@ val bigDecimalEquals: (Int, Int) -> Boolean
                     this is why adv. FP has all these complex concepts
                 </aside>
                 <pre class="kotlin"><code data-trim data-noescape>
-                    fun &lt;T> twice(f: (T)->T) : (T)->T = { t -> f(f(t))}
-
-                    fun addThree(x: Int) = x + 3
-
-                    val addThreeTwice : (T) -> T = twice(::addThree)
-
-                    addThreeTwice(7) // 13
+    fun &lt;T> T?.orElse(fallback: () -> T): T {
+        return if (this == null) {
+            fallback()
+        } else {
+            this
+        }
+    }
+    val nullableString: String? = null
+    val nonNullString = nullableString.orElse { "" }
                 </code></pre>
             </section>
             <section data-auto-animate data-timing="120">
@@ -451,8 +487,6 @@ val bigDecimalEquals: (Int, Int) -> Boolean
                 <ul>
                     <li class="fragment">Kotlin Scope Functions (let, apply, etc)</li>
                     <li class="fragment">Collection Operations (map, filter, etc)</li>
-                    <li class="fragment">Memoize</li>
-                    <li class="fragment">Lazy delegate</li>
                 </ul>
             </section>
         </section>
@@ -653,99 +687,6 @@ val result = doTry { "" }
 when (result) {
     is Try.Failure -> result.exception
     is Try.Success -> result.value
-}
-                </code></pre>
-            </section>
-        </section>
-        <section> <!-- testing -->
-            <section data-auto-animate data-timing="60">
-                <h2>Testing</h2>
-                <aside class="notes">
-                    DI is a pattern very commonly used in Object-Oriented Java.
-                    It is sometimes done using frameworks such as Dagger, Spring, or Guice,
-                    and sometimes plain constructor injection.
-                    One of the major benefits of dependency injection is that it gives you the ability to isolate a
-                    class for testing by injecting mocks.
-                    </aside>
-            </section>
-            <section data-auto-animate data-timing="60">
-                <h2>Testing</h2>
-                <aside class="notes">
-                    For example: FizzBuzzRunner will print to System.out in production,
-                    but we can inject a mock PrintStream for testing.
-                </aside>
-                <pre class="kotlin"><code data-trim data-noescape>
-class FizzBuzzRunner( val linePrinter: PrintStream = System.out) {
-
-  fun fizzBuzz(limit: Int) {
-    for(i in 1..limit) {
-      linePrinter.println(calculateValueForNumber(i))
-    }
-  }
-
-  fun calculateValueForNumber(number: Int) : String {
-    val sb = StringBuilder()
-    if (number % 3 == 0) {  sb.append("FIZZ") }
-    if (number % 5 == 0) {  sb.append("BUZZ") }
-    if (sb.isEmpty()) {  sb.append(number) }
-    return sb.toString()
-  }
-}
-                </code></pre>
-            </section>
-            <section data-auto-animate data-timing="90">
-                <h2>Testing</h2>
-                <aside class="notes">
-                    Now lets look at an FP example
-                    print function has isolated output side effect, but now its directly called, can't mock
-                    What do? component test?
-                    yes but makes edge cases harder to test
-                </aside>
-                <pre class="kotlin"><code data-trim data-noescape>
-fun fizzBuzz(limit: Int) {
-  for(i in 1..limit) {
-    print(calculateValueForNumber(i))
-  }
-}
-
-
-fun calculateValueForNumber(number: Int) : String {
-  val sb = StringBuilder()
-  if (number % 3 == 0) {  sb.append("FIZZ") }
-  if (number % 5 == 0) {  sb.append("BUZZ") }
-  if (sb.isEmpty()) {  sb.append(number) }
-  return sb.toString()
-}
-
-
-fun print(string: String) {
-  System.out.println(string)
-}
-                </code></pre>
-            </section>
-            <section data-auto-animate data-timing="60">
-                <h2>Testing</h2>
-                <aside class="notes">
-
-                </aside>
-                <pre class="kotlin"><code data-trim data-noescape>
-fun fizzBuzz(
-    limit: Int,
-    printer: (String) -> Unit = ::print
-) {
-  for(i in 1..limit) {
-    printer.invoke(calculateValueForNumber(i))
-  }
-}
-                </code></pre>
-                <pre class="kotlin"><code data-trim data-noescape>
-fizzBuzz(4)
-                </code></pre>
-                <pre class="kotlin"><code data-trim data-noescape>
-fun test() {
-  val outputList = mutableListOf&lt;String>()
-  fizzBuzz(6) { outputList.add(it) }
-  assertThat(outputList[2]).isEqualTo("FIZZ")
 }
                 </code></pre>
             </section>
