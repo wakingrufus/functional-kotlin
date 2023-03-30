@@ -420,7 +420,7 @@ val bigDecimalEquals: (Int, Int) -> Boolean
                 <ul>
                     <li class="fragment">Take a function as an input</li>
                     <li class="fragment">Return a function as output</li>
-                    <li class="fragment">Replace Dependency Injection</li>
+                    <li class="fragment">Replace dependency injection</li>
                     <li class="fragment">Abstraction over control flow</li>
                 </ul>
             </section>
@@ -457,6 +457,7 @@ fun newMessage(
             </section>
             <section data-auto-animate data-timing="200">
                 <h2>Higher-Order Functions</h2>
+                <h4>Abstraction over control flow</h4>
                 <aside class="notes">
                     abstract code structure.
                     Encapsulate more abstract concepts,
@@ -471,7 +472,7 @@ fun newMessage(
         }
     }
     val nullableString: String? = null
-    val nonNullString = nullableString.orElse { "" }
+    val nonNullString : String = nullableString.orElse { "" }
                 </code></pre>
             </section>
             <section data-auto-animate data-timing="120">
