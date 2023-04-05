@@ -591,8 +591,8 @@ sealed class Either&lt;A, B> {
 }
 val e : Either&lt;String, Int>
 when(e){
-    is Left -> e.length > 2
-    is Right -> e > 2
+    is Left -> e.value.length > 2
+    is Right -> e.value > 2
 }
                 </code></pre>
             </section>
